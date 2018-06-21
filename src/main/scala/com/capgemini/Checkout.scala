@@ -19,6 +19,7 @@ class Checkout {
     product match {
       case "Apple" => Right(0.60)
       case "Orange" => Right(0.25)
+      case unknown => Left(s"Product: '$unknown' is unknown")
     }
 
 }
