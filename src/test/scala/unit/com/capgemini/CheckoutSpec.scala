@@ -37,6 +37,16 @@ class CheckoutSpec extends Specification {
       ) must_=== Right(1.45)
     }
 
+    "Calculate the total price of a list of valid products, applying a 'Two for price of three' discount to oranges" in {
+      checkout(
+        "Apple" ::
+        "Orange" ::
+        "Orange" ::
+        "Orange" ::
+        Nil
+      ) must_=== Right(1.10)
+    }
+
   }
 
 }
