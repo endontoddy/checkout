@@ -19,5 +19,5 @@ class CheckoutSpec extends Specification {
       ) must_=== Right(1.95)
     }
   }
-  
+
 }
