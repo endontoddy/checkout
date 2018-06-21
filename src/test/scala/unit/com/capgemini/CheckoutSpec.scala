@@ -12,11 +12,8 @@ class CheckoutSpec extends Specification {
       checkout(
         "Apple" ::
         "Orange" ::
-        "Orange" ::
-        "Orange" ::
-        "Apple" ::
         Nil
-      ) must_=== Right(1.95)
+      ) must_=== Right(0.85)
     }
 
     "Return an appropriate error if an unknown product is passed" in {
@@ -29,6 +26,17 @@ class CheckoutSpec extends Specification {
         Nil
       ) must_=== Left("Product: 'Banana' is unknown")
     }
+
+    "Calculate the total price of a list of valid products, applying a 'Buy one get one free' discount to apples" in {
+      checkout(
+        "Apple" ::
+        "Apple" ::
+        "Apple" ::
+        "Orange" ::
+        Nil
+      ) must_=== Right(1.45)
+    }
+
   }
 
 }
