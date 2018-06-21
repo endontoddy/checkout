@@ -23,13 +23,22 @@ class Checkout {
   private def getPrice(product: String, quantity: Int): Result[BigDecimal] =
     product match {
       case "Apple" => Right(buyOneGetOneFree(quantity, applePrice))
-      case "Orange" => Right(orangePrice * quantity)
+      case "Orange" => Right(threeForTwo(quantity, orangePrice))
       case unknown => Left(s"Product: '$unknown' is unknown")
     }
 
   private def buyOneGetOneFree(quantity: Int, price: BigDecimal): BigDecimal = {
     val bogofQuantity = ceil(quantity.toFloat / 2)
     bogofQuantity * price
+  }
+
+  private def threeForTwo(quantity: Int, price: BigDecimal): BigDecimal = {
+    val extraQuantity = quantity % 3
+
+    val discountedPrice = (((quantity - extraQuantity) / 3) * 2) * price
+    val extraPrice = extraQuantity * price
+
+    discountedPrice + extraPrice
   }
 
 
