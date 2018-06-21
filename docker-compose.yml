@@ -1,0 +1,8 @@
+version: '2'
+services:
+  checkout:
+    image: "bigtruedata/sbt"
+    volumes:
+      - ./:/app
+      - ~/.ivy2:/root/.ivy2
+      - ~/.sbt:/root/.sbt
